@@ -16,8 +16,12 @@ import {
   ShadingType
 } from 'docx';
 
+// Define types for industry and document type
+type Industry = 'managed_it_services' | 'engineering';
+type DocumentType = 'information_memorandum' | 'sales_prospectus' | 'business_overview' | 'investment_thesis';
+
 // Industry-specific content definitions
-const industryContent = {
+const industryContent: Record<Industry, Record<DocumentType, string[]>> = {
   managed_it_services: {
     information_memorandum: [
       "Service Level Agreements (SLAs): Detail typical SLA commitments, uptime guarantees, and support response times.",
@@ -67,7 +71,7 @@ const industryContent = {
 };
 
 // Industry display names for better formatting
-const industryDisplayNames = {
+const industryDisplayNames: Record<Industry, string> = {
   managed_it_services: "Managed IT Services",
   engineering: "Engineering"
 };
@@ -79,7 +83,7 @@ export async function POST(request: Request) {
     const body = await request.json();
     console.log('Request body:', body);
     
-    const { documentType, industry } = body;
+    const { documentType, industry } = body as { documentType: DocumentType; industry: Industry };
     
     if (!documentType || !industry) {
       console.log('Missing required fields:', { documentType, industry });

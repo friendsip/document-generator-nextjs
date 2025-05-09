@@ -16,6 +16,10 @@ export async function GET() {
             }),
             new Paragraph({
               text: 'This is a simple test document.'
+            }),
+            new Paragraph({
+              text: '©2025 Cloud Development Group Limited. www.CloudDev.group - all rights reserved. Company Registration Number: 14580536',
+              alignment: 'center'
             })
           ]
         }
