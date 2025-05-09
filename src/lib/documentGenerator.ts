@@ -1,7 +1,11 @@
-import { Document, Packer, Paragraph, HeadingLevel, AlignmentType } from 'docx';
+import { Document, Packer, Paragraph, HeadingLevel, AlignmentType, TextRun } from 'docx';
+
+// Define types for industry and document type
+export type Industry = 'managed_it_services' | 'engineering';
+export type DocumentType = 'information_memorandum' | 'sales_prospectus' | 'business_overview' | 'investment_thesis';
 
 // Industry-specific content definitions
-const industryContent = {
+const industryContent: Record<Industry, Record<DocumentType, string[]>> = {
   managed_it_services: {
     information_memorandum: [
       "Service Level Agreements (SLAs): Detail typical SLA commitments.",
@@ -40,7 +44,7 @@ const industryContent = {
   }
 };
 
-export async function createDocument(documentType, industry) {
+export async function createDocument(documentType: DocumentType, industry: Industry) {
   try {
     console.log('Starting document creation');
     
@@ -61,24 +65,50 @@ export async function createDocument(documentType, industry) {
         properties: {},
         children: [
           new Paragraph({
-            text: documentTypeTitle,
             heading: HeadingLevel.TITLE,
-            alignment: AlignmentType.CENTER
+            alignment: AlignmentType.CENTER,
+            children: [
+              new TextRun({
+                text: documentTypeTitle,
+                bold: true,
+                size: 32
+              })
+            ]
           }),
           new Paragraph({
-            text: `Date: ${formattedDate}`,
-            alignment: AlignmentType.CENTER
+            alignment: AlignmentType.CENTER,
+            children: [
+              new TextRun({
+                text: `Date: ${formattedDate}`
+              })
+            ]
           }),
           new Paragraph({
-            text: "Executive Summary",
-            heading: HeadingLevel.HEADING_1
+            heading: HeadingLevel.HEADING_1,
+            children: [
+              new TextRun({
+                text: "Executive Summary",
+                bold: true,
+                size: 28
+              })
+            ]
           }),
           new Paragraph({
-            text: "This document provides a comprehensive overview."
+            children: [
+              new TextRun({
+                text: "This document provides a comprehensive overview."
+              })
+            ]
           }),
           new Paragraph({
-            text: `Industry-Specific Considerations: ${industryTitle}`,
-            heading: HeadingLevel.HEADING_2
+            heading: HeadingLevel.HEADING_2,
+            children: [
+              new TextRun({
+                text: `Industry-Specific Considerations: ${industryTitle}`,
+                bold: true,
+                size: 24
+              })
+            ]
           })
         ]
       }]
@@ -86,19 +116,37 @@ export async function createDocument(documentType, industry) {
     
     // Add industry-specific content if available
     if (industryContent[industry] && industryContent[industry][documentType]) {
-      const contentSection = doc.sections[0];
+      // Define interface to access doc.sections with TypeScript
+      interface DocumentWithSections {
+        sections: Array<{ 
+          addChildElement: (element: any) => void 
+        }>;
+      }
+      
+      // Cast document to our type
+      const typedDoc = doc as unknown as DocumentWithSections;
+      const contentSection = typedDoc.sections[0];
       
       industryContent[industry][documentType].forEach(content => {
         contentSection.addChildElement(
           new Paragraph({
-            text: content
+            children: [
+              new TextRun({
+                text: content
+              })
+            ]
           })
         );
       });
       
       contentSection.addChildElement(
         new Paragraph({
-          text: "[End of Industry-Specific Section]"
+          children: [
+            new TextRun({
+              text: "[End of Industry-Specific Section]",
+              italics: true
+            })
+          ]
         })
       );
     }

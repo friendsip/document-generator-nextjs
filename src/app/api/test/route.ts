@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { Document, Packer, Paragraph } from 'docx';
+import { Document, Packer, Paragraph, TextRun, AlignmentType } from 'docx';
 
 export async function GET() {
   try {
@@ -12,14 +12,30 @@ export async function GET() {
           properties: {},
           children: [
             new Paragraph({
-              text: 'Test Document'
+              children: [
+                new TextRun({
+                  text: 'Test Document',
+                  bold: true,
+                  size: 32
+                })
+              ]
             }),
             new Paragraph({
-              text: 'This is a simple test document.'
+              children: [
+                new TextRun({
+                  text: 'This is a simple test document.'
+                })
+              ]
             }),
             new Paragraph({
-              text: '©2025 Cloud Development Group Limited. www.CloudDev.group - all rights reserved. Company Registration Number: 14580536',
-              alignment: 'center'
+              alignment: AlignmentType.CENTER,
+              children: [
+                new TextRun({
+                  text: '©2025 Cloud Development Group Limited. www.CloudDev.group - all rights reserved. Company Registration Number: 14580536',
+                  size: 16,
+                  color: '777777'
+                })
+              ]
             })
           ]
         }

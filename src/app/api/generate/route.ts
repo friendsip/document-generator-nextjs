@@ -123,13 +123,20 @@ export async function POST(request: Request) {
     const paragraphs = [
       // Cover Page
       new Paragraph({
-        text: documentTypeTitle,
         heading: HeadingLevel.TITLE,
         alignment: AlignmentType.CENTER,
         spacing: {
           before: 3000, // Large space at top
           after: 400,
         },
+        children: [
+          new TextRun({
+            text: documentTypeTitle,
+            size: 56, // 28pt
+            bold: true,
+            color: "2E74B5",
+          }),
+        ],
       }),
       new Paragraph({
         alignment: AlignmentType.CENTER,
@@ -214,14 +221,25 @@ export async function POST(request: Request) {
         ],
       }),
       new Paragraph({
-        text: "",
         pageBreakBefore: true,
+        children: [
+          new TextRun({
+            text: ""
+          })
+        ]
       }),
       
       // Disclaimer
       new Paragraph({
-        text: "Disclaimer",
         heading: HeadingLevel.HEADING_1,
+        children: [
+          new TextRun({
+            text: "Disclaimer",
+            size: 32, // 16pt
+            bold: true,
+            color: "2E74B5"
+          })
+        ]
       }),
       new Paragraph({
         children: [
@@ -233,99 +251,194 @@ export async function POST(request: Request) {
         ],
       }),
       new Paragraph({
-        text: "",
         spacing: {
           after: 400,
         },
+        children: [
+          new TextRun({
+            text: ""
+          })
+        ]
       }),
       
       // Table of Contents (placeholder)
       new Paragraph({
-        text: "Table of Contents",
         heading: HeadingLevel.HEADING_1,
+        children: [
+          new TextRun({
+            text: "Table of Contents",
+            size: 32, // 16pt
+            bold: true,
+            color: "2E74B5"
+          })
+        ]
       }),
       new Paragraph({
-        text: "Executive Summary........................3",
+        children: [
+          new TextRun({
+            text: "Executive Summary........................3"
+          })
+        ]
       }),
       new Paragraph({
-        text: "Company Overview......................4",
+        children: [
+          new TextRun({
+            text: "Company Overview......................4"
+          })
+        ]
       }),
       new Paragraph({
-        text: "Industry Analysis.........................5",
+        children: [
+          new TextRun({
+            text: "Industry Analysis.........................5"
+          })
+        ]
       }),
       new Paragraph({
-        text: "Industry-Specific Content.............6",
+        children: [
+          new TextRun({
+            text: "Industry-Specific Content.............6"
+          })
+        ]
       }),
       new Paragraph({
-        text: "Financial Information..................7",
+        children: [
+          new TextRun({
+            text: "Financial Information..................7"
+          })
+        ]
       }),
       new Paragraph({
-        text: "",
         pageBreakBefore: true,
+        children: [
+          new TextRun({
+            text: ""
+          })
+        ]
       }),
       
       // Executive Summary
       new Paragraph({
-        text: "Executive Summary",
         heading: HeadingLevel.HEADING_1,
+        children: [
+          new TextRun({
+            text: "Executive Summary",
+            size: 32, // 16pt
+            bold: true,
+            color: "2E74B5"
+          })
+        ]
       }),
       new Paragraph({
-        text: "This document provides a comprehensive overview of the business opportunity. It includes detailed information about the company, its operations, market position, and growth potential in the " + industryTitle + " sector.",
+        children: [
+          new TextRun({
+            text: "This document provides a comprehensive overview of the business opportunity. It includes detailed information about the company, its operations, market position, and growth potential in the " + industryTitle + " sector."
+          })
+        ]
       }),
       new Paragraph({
-        text: "Key highlights include:",
+        children: [
+          new TextRun({
+            text: "Key highlights include:"
+          })
+        ]
       }),
       new Paragraph({
-        text: "• Established position in the " + industryTitle + " market",
         indent: {
           left: 360, // 0.25 inches
         },
+        children: [
+          new TextRun({
+            text: "• Established position in the " + industryTitle + " market"
+          })
+        ]
       }),
       new Paragraph({
-        text: "• Strong recurring revenue model with high customer retention",
         indent: {
           left: 360, // 0.25 inches
         },
+        children: [
+          new TextRun({
+            text: "• Strong recurring revenue model with high customer retention"
+          })
+        ]
       }),
       new Paragraph({
-        text: "• Scalable business model with significant growth potential",
         indent: {
           left: 360, // 0.25 inches
         },
+        children: [
+          new TextRun({
+            text: "• Scalable business model with significant growth potential"
+          })
+        ]
       }),
       new Paragraph({
-        text: "• Experienced management team with industry expertise",
         indent: {
           left: 360, // 0.25 inches
         },
+        children: [
+          new TextRun({
+            text: "• Experienced management team with industry expertise"
+          })
+        ]
       }),
       new Paragraph({
-        text: "",
         spacing: {
           after: 400,
         },
+        children: [
+          new TextRun({
+            text: ""
+          })
+        ]
       }),
       
       // Company Overview section
       new Paragraph({
-        text: "Company Overview",
         heading: HeadingLevel.HEADING_1,
+        children: [
+          new TextRun({
+            text: "Company Overview",
+            size: 32, // 16pt
+            bold: true,
+            color: "2E74B5"
+          })
+        ]
       }),
       new Paragraph({
-        text: `${companyName} is a leading provider of solutions in the ${industryTitle} sector. The company offers a comprehensive range of services designed to meet the needs of businesses across various industries.`,
+        children: [
+          new TextRun({
+            text: `${companyName} is a leading provider of solutions in the ${industryTitle} sector. The company offers a comprehensive range of services designed to meet the needs of businesses across various industries.`
+          })
+        ]
       }),
       
       // Industry-specific content 
       new Paragraph({
-        text: `Industry-Specific Considerations: ${industryTitle}`,
         heading: HeadingLevel.HEADING_1,
         pageBreakBefore: true,
+        children: [
+          new TextRun({
+            text: `Industry-Specific Considerations: ${industryTitle}`,
+            size: 32, // 16pt
+            bold: true,
+            color: "2E74B5"
+          })
+        ]
       }),
       
       // Key Considerations subheading
       new Paragraph({
-        text: "Key Considerations",
         heading: HeadingLevel.HEADING_2,
+        children: [
+          new TextRun({
+            text: "Key Considerations",
+            size: 28, // 14pt
+            bold: true,
+            color: "2E74B5"
+          })
+        ]
       }),
     ];
     
@@ -353,11 +466,15 @@ export async function POST(request: Request) {
         } else {
           paragraphs.push(
             new Paragraph({
-              text: content,
               spacing: {
                 before: 120,
                 after: 120,
               },
+              children: [
+                new TextRun({
+                  text: content
+                })
+              ]
             })
           );
         }
@@ -367,145 +484,228 @@ export async function POST(request: Request) {
     // Add Financial Information section
     paragraphs.push(
       new Paragraph({
-        text: "Financial Information",
         heading: HeadingLevel.HEADING_1,
         pageBreakBefore: true,
+        children: [
+          new TextRun({
+            text: "Financial Information",
+            size: 32, // 16pt
+            bold: true,
+            color: "2E74B5"
+          })
+        ]
+      })
+    );
+    
+    // Fixed the italics attribute by using TextRun
+    paragraphs.push(
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: "This section would typically contain detailed financial information including historical performance, projections, and key financial metrics relevant to the business and industry.",
+            italics: true,
+          })
+        ]
       })
     );
     
     paragraphs.push(
       new Paragraph({
-        text: "This section would typically contain detailed financial information including historical performance, projections, and key financial metrics relevant to the business and industry.",
-        italics: true,
+        children: [
+          new TextRun({
+            text: "For the purposes of this template, this section is presented as a placeholder. In a complete document, you would include:"
+          })
+        ]
       })
     );
     
     paragraphs.push(
       new Paragraph({
-        text: "For the purposes of this template, this section is presented as a placeholder. In a complete document, you would include:"
-      })
-    );
-    
-    paragraphs.push(
-      new Paragraph({
-        text: "• Income Statements (3-5 years historical and projections)",
         indent: {
           left: 360, // 0.25 inches
         },
+        children: [
+          new TextRun({
+            text: "• Income Statements (3-5 years historical and projections)"
+          })
+        ]
       })
     );
     
     paragraphs.push(
       new Paragraph({
-        text: "• Balance Sheets",
         indent: {
           left: 360, // 0.25 inches
         },
+        children: [
+          new TextRun({
+            text: "• Balance Sheets"
+          })
+        ]
       })
     );
     
     paragraphs.push(
       new Paragraph({
-        text: "• Cash Flow Statements",
         indent: {
           left: 360, // 0.25 inches
         },
+        children: [
+          new TextRun({
+            text: "• Cash Flow Statements"
+          })
+        ]
       })
     );
     
     paragraphs.push(
       new Paragraph({
-        text: "• Key Performance Indicators specific to the industry",
         indent: {
           left: 360, // 0.25 inches
         },
+        children: [
+          new TextRun({
+            text: "• Key Performance Indicators specific to the industry"
+          })
+        ]
       })
     );
     
     // Conclusion
     paragraphs.push(
       new Paragraph({
-        text: "Conclusion",
         heading: HeadingLevel.HEADING_1,
         pageBreakBefore: true,
+        children: [
+          new TextRun({
+            text: "Conclusion",
+            size: 32, // 16pt
+            bold: true,
+            color: "2E74B5"
+          })
+        ]
       })
     );
     
     paragraphs.push(
       new Paragraph({
-        text: `This ${documentTypeTitle} has outlined the key aspects of the business opportunity in the ${industryTitle} sector. The company offers significant potential for growth and value creation through its established market position, experienced management team, and scalable business model.`,
+        children: [
+          new TextRun({
+            text: `This ${documentTypeTitle} has outlined the key aspects of the business opportunity in the ${industryTitle} sector. The company offers significant potential for growth and value creation through its established market position, experienced management team, and scalable business model.`
+          })
+        ]
       })
     );
     
     paragraphs.push(
       new Paragraph({
-        text: "For further information, please contact:",
         spacing: {
           before: 400,
           after: 200,
         },
+        children: [
+          new TextRun({
+            text: "For further information, please contact:"
+          })
+        ]
       })
     );
     
     paragraphs.push(
       new Paragraph({
-        text: companyName,
-        bold: true,
+        children: [
+          new TextRun({
+            text: companyName,
+            bold: true,
+          })
+        ]
       })
     );
     
     paragraphs.push(
       new Paragraph({
-        text: contactDetails.address,
+        children: [
+          new TextRun({
+            text: contactDetails.address
+          })
+        ]
       })
     );
     
     paragraphs.push(
       new Paragraph({
-        text: `${contactDetails.city}, ${contactDetails.postalCode}`,
+        children: [
+          new TextRun({
+            text: `${contactDetails.city}, ${contactDetails.postalCode}`
+          })
+        ]
       })
     );
     
     paragraphs.push(
       new Paragraph({
-        text: contactDetails.country,
+        children: [
+          new TextRun({
+            text: contactDetails.country
+          })
+        ]
       })
     );
     
     paragraphs.push(
       new Paragraph({
-        text: `Phone: ${contactDetails.phone}`,
+        children: [
+          new TextRun({
+            text: `Phone: ${contactDetails.phone}`
+          })
+        ]
       })
     );
     
     paragraphs.push(
       new Paragraph({
-        text: `Email: ${contactDetails.email}`,
+        children: [
+          new TextRun({
+            text: `Email: ${contactDetails.email}`
+          })
+        ]
       })
     );
     
     paragraphs.push(
       new Paragraph({
-        text: `Website: ${contactDetails.website}`,
+        children: [
+          new TextRun({
+            text: `Website: ${contactDetails.website}`
+          })
+        ]
       })
     );
     
     // Add copyright to the final page
     paragraphs.push(
       new Paragraph({
-        text: "",
         spacing: {
           before: 600,
         },
+        children: [
+          new TextRun({
+            text: ""
+          })
+        ]
       })
     );
     
     paragraphs.push(
       new Paragraph({
-        text: copyrightInfo,
         alignment: AlignmentType.CENTER,
-        color: "777777",
-        size: 16, // 8pt
+        children: [
+          new TextRun({
+            text: copyrightInfo,
+            size: 16, // 8pt
+            color: "777777",
+          })
+        ]
       })
     );
     
@@ -600,9 +800,20 @@ export async function POST(request: Request) {
     
     // Add a table to the document - insert after the company overview text
     // Find the paragraph after "Company Overview" text
+    // Define type for our paragraph structure
+    interface ParagraphWithChildren {
+      children?: Array<{ text?: string }>;
+    }
+    
     let companyOverviewIndex = -1;
     for (let i = 0; i < paragraphs.length; i++) {
-      if (paragraphs[i].text === `${companyName} is a leading provider of solutions in the ${industryTitle} sector. The company offers a comprehensive range of services designed to meet the needs of businesses across various industries.`) {
+      // Type cast paragraph to access children safely
+      const paragraph = paragraphs[i] as unknown as ParagraphWithChildren;
+      
+      // Search for company overview paragraph by checking TextRun content
+      if (paragraph.children && 
+          paragraph.children[0] && 
+          paragraph.children[0].text === `${companyName} is a leading provider of solutions in the ${industryTitle} sector. The company offers a comprehensive range of services designed to meet the needs of businesses across various industries.`) {
         companyOverviewIndex = i;
         break;
       }
@@ -661,8 +872,12 @@ export async function POST(request: Request) {
                 },
                 children: [
                   new Paragraph({
-                    text: "Company Name",
-                    bold: true,
+                    children: [
+                      new TextRun({
+                        text: "Company Name",
+                        bold: true,
+                      })
+                    ]
                   }),
                 ],
               }),
@@ -670,65 +885,15 @@ export async function POST(request: Request) {
                 width: {
                   size: 70,
                   type: WidthType.PERCENTAGE,
-                },
-                children: [new Paragraph(companyName)],
-              }),
-            ],
-          }),
-          new TableRow({
-            children: [
-              new TableCell({
-                width: {
-                  size: 30,
-                  type: WidthType.PERCENTAGE,
-                },
-                shading: {
-                  fill: "EEF0F2",
-                  type: ShadingType.SOLID,
                 },
                 children: [
                   new Paragraph({
-                    text: "Industry",
-                    bold: true,
+                    children: [
+                      new TextRun({
+                        text: companyName
+                      })
+                    ]
                   }),
-                ],
-              }),
-              new TableCell({
-                width: {
-                  size: 70,
-                  type: WidthType.PERCENTAGE,
-                },
-                children: [new Paragraph(industryTitle)],
-              }),
-            ],
-          }),
-          new TableRow({
-            children: [
-              new TableCell({
-                width: {
-                  size: 30,
-                  type: WidthType.PERCENTAGE,
-                },
-                shading: {
-                  fill: "EEF0F2",
-                  type: ShadingType.SOLID,
-                },
-                children: [
-                  new Paragraph({
-                    text: "Location",
-                    bold: true,
-                  }),
-                ],
-              }),
-              new TableCell({
-                width: {
-                  size: 70,
-                  type: WidthType.PERCENTAGE,
-                },
-                children: [
-                  new Paragraph(
-                    `${contactDetails.city}, ${contactDetails.country}`
-                  ),
                 ],
               }),
             ],
@@ -746,8 +911,12 @@ export async function POST(request: Request) {
                 },
                 children: [
                   new Paragraph({
-                    text: "Contact",
-                    bold: true,
+                    children: [
+                      new TextRun({
+                        text: "Industry",
+                        bold: true,
+                      })
+                    ]
                   }),
                 ],
               }),
@@ -757,9 +926,91 @@ export async function POST(request: Request) {
                   type: WidthType.PERCENTAGE,
                 },
                 children: [
-                  new Paragraph(
-                    `${contactDetails.email} | ${contactDetails.phone}`
-                  ),
+                  new Paragraph({
+                    children: [
+                      new TextRun({
+                        text: industryTitle
+                      })
+                    ]
+                  }),
+                ],
+              }),
+            ],
+          }),
+          new TableRow({
+            children: [
+              new TableCell({
+                width: {
+                  size: 30,
+                  type: WidthType.PERCENTAGE,
+                },
+                shading: {
+                  fill: "EEF0F2",
+                  type: ShadingType.SOLID,
+                },
+                children: [
+                  new Paragraph({
+                    children: [
+                      new TextRun({
+                        text: "Location",
+                        bold: true,
+                      })
+                    ]
+                  }),
+                ],
+              }),
+              new TableCell({
+                width: {
+                  size: 70,
+                  type: WidthType.PERCENTAGE,
+                },
+                children: [
+                  new Paragraph({
+                    children: [
+                      new TextRun({
+                        text: `${contactDetails.city}, ${contactDetails.country}`
+                      })
+                    ]
+                  }),
+                ],
+              }),
+            ],
+          }),
+          new TableRow({
+            children: [
+              new TableCell({
+                width: {
+                  size: 30,
+                  type: WidthType.PERCENTAGE,
+                },
+                shading: {
+                  fill: "EEF0F2",
+                  type: ShadingType.SOLID,
+                },
+                children: [
+                  new Paragraph({
+                    children: [
+                      new TextRun({
+                        text: "Contact",
+                        bold: true,
+                      })
+                    ]
+                  }),
+                ],
+              }),
+              new TableCell({
+                width: {
+                  size: 70,
+                  type: WidthType.PERCENTAGE,
+                },
+                children: [
+                  new Paragraph({
+                    children: [
+                      new TextRun({
+                        text: `${contactDetails.email} | ${contactDetails.phone}`
+                      })
+                    ]
+                  }),
                 ],
               }),
             ],
@@ -767,16 +1018,25 @@ export async function POST(request: Request) {
         ],
       });
       
+      // Need to access doc.sections - use type assertion for TypeScript
+      interface DocumentWithSections {
+        sections: Array<{ children: any[] }>;
+      }
+      
       // Insert the table after company overview text
-      doc.sections[0].children.splice(companyOverviewIndex + 1, 0, table);
+      (doc as unknown as DocumentWithSections).sections[0].children.splice(companyOverviewIndex + 1, 0, table);
       
       // Add a blank paragraph after the table
-      doc.sections[0].children.splice(companyOverviewIndex + 2, 0, 
+      (doc as unknown as DocumentWithSections).sections[0].children.splice(companyOverviewIndex + 2, 0, 
         new Paragraph({
-          text: "",
           spacing: {
             after: 200,
           },
+          children: [
+            new TextRun({
+              text: ""
+            })
+          ]
         })
       );
     }
